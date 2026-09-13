@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Mino 👀</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:#080810;
+  overflow-x:hidden;
+}
+
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 15% 20%,#43205c,transparent 35%),
+    radial-gradient(circle at 85% 75%,#123b59,transparent 35%),
+    #080810;
+}
+
+.stars{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.4;
+  background-image:radial-gradient(white 1px,transparent 1px);
+  background-size:55px 55px;
+  animation:stars 18s linear infinite;
+}
+
+@keyframes stars{
+  to{
+    transform:translateY(55px);
+  }
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+  text-align:center;
+}
+
+.card{
+  width:min(720px,100%);
+  padding:40px 25px;
+  border-radius:30px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(15px);
+  box-shadow:0 20px 80px rgba(0,0,0,.5);
+}
+
+h1{
+  font-size:clamp(45px,11vw,80px);
+  margin:10px 0;
+  background:linear-gradient(90deg,#fff,#b8a7ff,#fff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+h2{
+  font-size:clamp(30px,8vw,52px);
+}
+
+p{
+  font-size:18px;
+  line-height:1.7;
+  color:#ddd;
+}
+
+.emoji{
+  font-size:70px;
+  animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+  50%{
+    transform:translateY(-12px) rotate(5deg);
+  }
+}
+
+button{
+  border:none;
+  border-radius:999px;
+  padding:15px 25px;
+  margin:10px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background:white;
+  color:#151525;
+  transition:.25s;
+}
+
+button:hover{
+  transform:scale(1.06);
+}
+
+.primary{
+  background:#8f7cff;
+  color:white;
+}
+
+.hidden{
+  display:none;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-top:25px;
+}
+
+.small-card{
+  padding:22px 15px;
+  border-radius:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  transition:.25s;
+}
+
+.small-card:hover{
+  transform:translateY(-5px);
+}
+
+.small-card b{
+  display:block;
+  font-size:21px;
+  margin-bottom:10px;
+}
+
+.fact{
+  font-size:25px;
+  font-weight:bold;
+  margin:30px 0;
+  min-height:70px;
+}
+
+.counter{
+  font-size:55px;
+  font-weight:bold;
+  margin:25px;
+}
+
+.floating{
+  position:fixed;
+  top:-50px;
+  pointer-events:none;
+  z-index:9999;
+  animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(500deg);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="stars"></div>
+
+
+<!-- HOME -->
+
+<section id="home">
+
+<div class="card">
+
+<div class="emoji">👀</div>
+
+<h1>Yo Mino!</h1>
+
+<p id="typing"></p>
+
+<button class="primary" onclick="showSection('fun')">
+Okay... what's this? 🤨
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FUN PAGE -->
+
+<section id="fun" class="hidden">
+
+<div class="card">
+
+<h2>Welcome to the nonsense 😂</h2>
+
+<p>
+You clicked the button, so now you're officially stuck here.
+No refunds. 💀
+</p>
+
+<div class="cards">
+
+<div class="small-card">
+<b>😂 Chaos</b>
+Random conversations that somehow become absolute nonsense.
+</div>
+
+<div class="small-card">
+<b>💬 Yapping</b>
+One normal conversation somehow turns into 3 hours of talking.
+</div>
+
+<div class="small-card">
+<b>🤨 Questionable Decisions</b>
+Sometimes the best memories come from the dumbest ideas.
+</div>
+
+<div class="small-card">
+<b>🫡 Surviving</b>
+School, exams, life... somehow we're still here.
+</div>
+
+</div>
+
+<button class="primary" onclick="showSection('facts')">
+Press this suspicious button 👀
+</button>
+
+</div>
+
+</section>
+
+
+<!-- RANDOM FACTS -->
+
+<section id="facts" class="hidden">
+
+<div class="card">
+
+<div class="emoji">🧠</div>
+
+<h2>Totally Serious Mino Facts</h2>
+
+<div class="fact" id="fact">
+Loading highly scientific information...
+</div>
+
+<button onclick="randomFact()">
+Another fact 🔄
+</button>
+
+<button class="primary" onclick="showSection('final')">
+Okay I'm done 😂
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final" class="hidden">
+
+<div class="card">
+
+<div class="emoji">🎉</div>
+
+<h2>That's it bro 😭</h2>
+
+<p>
+You have officially completed the extremely unnecessary
+Mino Internet Experience™.
+</p>
+
+<p>
+Thanks for clicking through all this nonsense 😂🤝
+</p>
+
+<p>
+<b>
+Stay goofy. Stay awesome. And please don't judge my web-design skills. 💀
+</b>
+</p>
+
+<button class="primary" onclick="celebrate()">
+One last button 👀
+</button>
+
+<p id="ending"></p>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* TYPING EFFECT */
+
+const message =
+"Made a tiny website because sending a normal message felt way too boring 😂";
+
+let typingIndex = 0;
+
+function typeText(){
+
+if(typingIndex < message.length){
+
+document.getElementById("typing").textContent +=
+message[typingIndex];
+
+typingIndex++;
+
+setTimeout(typeText,35);
+
+}
+
+}
+
+typeText();
+
+
+/* PAGE SWITCH */
+
+function showSection(id){
+
+document.querySelectorAll("section").forEach(section=>{
+section.classList.add("hidden");
+});
+
+const target = document.getElementById(id);
+
+if(target){
+target.classList.remove("hidden");
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+/* RANDOM FACTS */
+
+const facts = [
+
+"Mino probably has at least 47 tabs open somewhere. 🤨",
+
+"Scientifically speaking, Mino + boredom = chaos. 😂",
+
+"There is absolutely no reason this website needed to exist. Yet here we are. 💀",
+
+"Official research confirms that random conversations are never actually random.",
+
+"Warning: excessive amounts of yapping may occur. 🗣️",
+
+"99% of this website was created instead of doing something productive. 😭",
+
+"Mino has successfully passed the website inspection. ✅"
+
+];
+
+function randomFact(){
+
+const random =
+Math.floor(Math.random()*facts.length);
+
+document.getElementById("fact").textContent =
+facts[random];
+
+}
+
+
+/* FIRST FACT */
+
+randomFact();
+
+
+/* FINAL CONFETTI */
+
+function celebrate(){
+
+const emojis=[
+"😂",
+"😭",
+"✨",
+"🎉",
+"🤨",
+"💀",
+"🫡",
+"⭐",
+"🔥"
+];
+
+for(let i=0;i<60;i++){
+
+const element =
+document.createElement("div");
+
+element.className="floating";
+
+element.textContent =
+emojis[Math.floor(Math.random()*emojis.length)];
+
+element.style.left =
+Math.random()*100+"vw";
+
+element.style.fontSize =
+(18+Math.random()*25)+"px";
+
+element.style.animationDuration =
+(2+Math.random()*3)+"s";
+
+document.body.appendChild(element);
+
+setTimeout(()=>{
+element.remove();
+},5000);
+
+}
+
+document.getElementById("ending").textContent =
+"Okay NOW you're actually done. 😂🤝";
+
+}
+
+</script>
+
+</body>
+</html>
